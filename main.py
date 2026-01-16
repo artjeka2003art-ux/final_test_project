@@ -27,22 +27,24 @@ async def read_status(request: Request):
             "id": 1,
             "name": "Ghost Demo API",
             "status": "running",
-            "url": "https://example.com/demo"
+            "url": "https://example.com/demo",
         },
         {
             "id": 2,
             "name": "Analytics Service",
             "status": "degraded",
-            "url": "https://example.com/analytics"
+            "url": "https://example.com/analytics",
         },
         {
             "id": 3,
             "name": "Database Service",
             "status": "running",
-            "url": "https://example.com/db"
-        }
+            "url": "https://example.com/db",
+        },
     ]
-    return templates.TemplateResponse("status.html", {"request": request, "projects": projects})
+    return templates.TemplateResponse(
+        "status.html", {"request": request, "projects": projects}
+    )
 
 
 @app.get("/api/health")
@@ -59,14 +61,14 @@ async def get_projects():
             "id": 1,
             "name": "Ghost Demo API",
             "status": "running",
-            "url": "https://example.com/demo"
+            "url": "https://example.com/demo",
         },
         {
             "id": 2,
             "name": "Analytics Service",
             "status": "degraded",
-            "url": "https://example.com/analytics"
-        }
+            "url": "https://example.com/analytics",
+        },
     ]
 
 
