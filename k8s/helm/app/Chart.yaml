@@ -1,0 +1,6 @@
+apiVersion: v2
+name: final_test_project
+description: Auto-generated Helm chart by GhostCMD
+type: application
+version: 0.1.0
+appVersion: "1.0"

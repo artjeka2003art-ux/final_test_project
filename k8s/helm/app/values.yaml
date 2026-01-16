@@ -1,0 +1,15 @@
+replicaCount: 1
+
+namespace: ghostcmd-apps
+
+image:
+  repository: ghcr.io/user/project
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 8000
+
+ingress:
+  enabled: true
+  host: proj-7.apps.ghostcmd.com

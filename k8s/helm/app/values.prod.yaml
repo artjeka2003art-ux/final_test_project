@@ -1,0 +1,11 @@
+# prod environment overrides
+namespace: ghostcmd-apps
+
+image:
+  repository: ghcr.io/user/project
+  tag: prod-latest
+  pullSecret: ghcr-credentials
+
+ingress:
+  enabled: true
+  host: proj-7.apps.ghostcmd.com

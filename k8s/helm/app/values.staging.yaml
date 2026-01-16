@@ -1,0 +1,11 @@
+# staging environment overrides
+namespace: ghostcmd-apps
+
+image:
+  repository: ghcr.io/user/project
+  tag: staging-latest
+  pullSecret: ghcr-credentials
+
+ingress:
+  enabled: true
+  host: staging.proj-7.apps.ghostcmd.com
