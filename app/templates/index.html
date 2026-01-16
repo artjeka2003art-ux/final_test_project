@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard">
+    <section class="hero">
+        <h2 class="hero-title">GhostCMD Demo</h2>
+        <p class="hero-text">Simple FastAPI dashboard used to demonstrate AI-powered deployments.</p>
+    </section>
+    
+    <section class="cards-grid">
+        <div class="card">
+            <div class="card-icon">📊</div>
+            <h3 class="card-title">Projects</h3>
+            <p class="card-value">3</p>
+            <p class="card-label">Active deployments</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3 class="card-title">Cluster Status</h3>
+            <p class="card-value">Healthy</p>
+            <p class="card-label">3 pods running</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">🚀</div>
+            <h3 class="card-title">Next Action</h3>
+            <p class="card-value">Ready</p>
+            <p class="card-label">System operational</p>
+        </div>
+    </section>
+    
+    <section class="actions">
+        <a href="/status" class="btn-primary">View status details</a>
+    </section>
+</div>
+{% endblock %}

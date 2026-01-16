@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Status - GhostCMD Demo App{% endblock %}
+
+{% block content %}
+<div class="status-page">
+    <div class="status-header">
+        <h2 class="status-title">Service Status</h2>
+        <a href="/" class="btn-secondary">← Back to dashboard</a>
+    </div>
+    
+    <div class="projects-table-container">
+        <table class="projects-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td class="table-id">#{{ project.id }}</td>
+                    <td class="table-name">{{ project.name }}</td>
+                    <td>
+                        <span class="status-badge status-{{ project.status }}">
+                            {{ project.status }}
+                        </span>
+                    </td>
+                    <td class="table-url">
+                        <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
+                            {{ project.url }}
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
