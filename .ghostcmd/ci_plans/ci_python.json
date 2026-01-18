@@ -102,7 +102,7 @@
         ]
       }
     ],
-    "intent": "python + black + pytest + coverage + docker build"
+    "intent": "python + black + pytest"
   },
-  "sha256": "d814a60ac4ec909b74588f2eab8150398663e7b58163ea8c07805b0820811320"
+  "sha256": "503ec0960e643508722f663a5c1a0e8ed9f339f6c9d21d64b72194a6dbbe3f54"
 }
