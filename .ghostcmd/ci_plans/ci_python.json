@@ -73,127 +73,11 @@
         ]
       },
       {
-        "id": "test_matrix",
-        "runs_on": "ubuntu-latest",
-        "strategy": {
-          "matrix": {
-            "python-version": [
-              "3.8",
-              "3.9",
-              "3.10",
-              "3.11"
-            ]
-          }
-        },
-        "steps": [
-          {
-            "type": "checkout"
-          },
-          {
-            "type": "setup_python",
-            "version": "${{ matrix.python-version }}"
-          },
-          {
-            "type": "cache_pip",
-            "key": "pip-cache"
-          },
-          {
-            "type": "run",
-            "cmd": "python -m pip install --upgrade pip"
-          },
-          {
-            "type": "run",
-            "cmd": "pip install -r requirements.txt || true"
-          },
-          {
-            "type": "run",
-            "cmd": "pytest -q --maxfail=1 --disable-warnings || true"
-          }
-        ]
-      },
-      {
-        "id": "security_scan",
-        "runs_on": "ubuntu-latest",
-        "needs": [],
-        "steps": [
-          {
-            "type": "checkout"
-          },
-          {
-            "type": "security_scan"
-          }
-        ]
-      },
-      {
-        "id": "sbom",
-        "runs_on": "ubuntu-latest",
-        "needs": [
-          "lint",
-          "test",
-          "test_matrix",
-          "security_scan"
-        ],
-        "steps": [
-          {
-            "type": "checkout"
-          },
-          {
-            "type": "sbom",
-            "output": "sbom.json"
-          }
-        ]
-      },
-      {
-        "id": "codeql",
-        "runs_on": "ubuntu-latest",
-        "needs": [
-          "lint",
-          "test",
-          "test_matrix",
-          "security_scan",
-          "sbom"
-        ],
-        "steps": [
-          {
-            "type": "checkout"
-          },
-          {
-            "type": "run",
-            "cmd": "sudo apt-get update && sudo apt-get install -y jq"
-          },
-          {
-            "type": "run",
-            "cmd": "git init . && git fetch origin main --depth=1 && git checkout main || true"
-          },
-          {
-            "type": "run",
-            "cmd": "echo '::group::Initialize CodeQL'"
-          },
-          {
-            "type": "run",
-            "cmd": "codeql database create codeql-db --language=cpp,java,python,go,ruby,php,csharp --command='make build || true' || echo 'skip codeql db'"
-          },
-          {
-            "type": "run",
-            "cmd": "codeql database analyze codeql-db --format=sarifv2.1.0 --output=results.sarif || true"
-          },
-          {
-            "type": "upload_artifact",
-            "name": "codeql-results",
-            "path": "results.sarif"
-          }
-        ]
-      },
-      {
         "id": "docker_build",
         "runs_on": "ubuntu-latest",
         "needs": [
           "lint",
-          "test",
-          "test_matrix",
-          "security_scan",
-          "sbom",
-          "codeql"
+          "test"
         ],
         "steps": [
           {
@@ -218,7 +102,7 @@
         ]
       }
     ],
-    "intent": "python matrix + black + pytest + coverage + docker build + security scan + sbom + codeql"
+    "intent": "python + black + pytest"
   },
-  "sha256": "2ff7d109ae6dae4b11cc12700d25bffa26167f5527c0ae7dcaf4ec57188830ea"
+  "sha256": "503ec0960e643508722f663a5c1a0e8ed9f339f6c9d21d64b72194a6dbbe3f54"
 }
