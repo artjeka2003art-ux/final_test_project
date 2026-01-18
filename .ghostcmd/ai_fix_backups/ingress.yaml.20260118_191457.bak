@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ghostcmd-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+  - host: proj-7.apps.ghostcmd.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ghostcmd-service
+            port:
+              number: 8000
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - proj-7.apps.ghostcmd.com
+    secretName: proj-tls-{{ .Values.ingress.host | replace "." "-" }}
