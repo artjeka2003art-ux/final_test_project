@@ -102,7 +102,7 @@
         ]
       }
     ],
-    "intent": "python + black + pytest"
+    "intent": "python + black + pytest + coverage"
   },
-  "sha256": "503ec0960e643508722f663a5c1a0e8ed9f339f6c9d21d64b72194a6dbbe3f54"
+  "sha256": "e9808b995c3141c8a8639bc3355146696a75bc598b99caadcea1f1167fdb9dac"
 }
