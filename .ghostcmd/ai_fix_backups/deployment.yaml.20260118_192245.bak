@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghostcmd-app
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: ghostcmd-app
+  template:
+    metadata:
+      labels:
+        app: ghostcmd-app
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.image.pullSecret | default "ghcr-credentials" }}
+      containers:
+        - name: ghostcmd-container
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .Values.service.port }}
